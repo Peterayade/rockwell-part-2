@@ -1,6 +1,6 @@
 import { useCatalogStore } from "@/stores/catalog-store";
 
-const MATERIALS = ["Chrome", "Gunmetal", "White Chrome", "Rose Gold"];
+const MATERIALS = ["Chrome", "Gunmetal", "White Chrome", "Rose Gold", "Stainless Steel",'Matte Black'];
 const TYPES = ["Adjustable", "Fixed"];
 
 function Checkbox({ checked, onChange }: { checked: boolean; onChange: () => void }) {
