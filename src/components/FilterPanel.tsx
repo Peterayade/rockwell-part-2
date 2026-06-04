@@ -42,7 +42,7 @@ function Toggle({ on, onChange }: { on: boolean; onChange: (v: boolean) => void 
       }}
     >
       <span
-        className="absolute top-[3px] rounded-full bg-white transition-transform"
+        className="absolute left-0 top-[3px] rounded-full bg-white transition-transform"
         style={{
           width: 16,
           height: 16,
