@@ -28,7 +28,6 @@ export default function App() {
     if (sortBy === "name") return a.name.localeCompare(b.name);
     return 0;
   });
-
   const sortLabel = SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? "Featured";
 
   return (
@@ -43,9 +42,11 @@ export default function App() {
         </div>
 
         {/* Body */}
-        <div className="flex items-start" style={{ gap: 32 }}>
+        <div className="flex flex-row items-start" style={{ gap: 32 }}>
           {/* Left — Filter Panel */}
-          <FilterPanel />
+          <div style={{ width: 280, flexShrink: 0 }}>
+            <FilterPanel />
+          </div>
 
           {/* Right — Results */}
           <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
@@ -54,11 +55,16 @@ export default function App() {
               <span className="text-[15px] font-semibold text-[#1a1a1a]">
                 {sorted.length} {sorted.length === 1 ? "razor" : "razors"}
               </span>
-              <div className="relative">
+              <div className="relative inline-flex items-center shrink-0 w-fit bg-white border border-[#e5e5e5] rounded-[8px] pl-[12px] pr-[32px] py-[8px]">
+                <span className="text-[13px] font-medium text-[#1a1a1a] shrink-0">Sort:</span>
+                <span className="ml-[6px] text-[13px] font-medium text-[#1a1a1a] whitespace-nowrap">
+                  {sortLabel}
+                </span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white border border-[#e5e5e5] rounded-[8px] px-[12px] py-[8px] pr-[28px] text-[13px] font-medium text-[#1a1a1a] cursor-pointer outline-none"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  aria-label="Sort by"
                 >
                   {SORT_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -66,9 +72,19 @@ export default function App() {
                     </option>
                   ))}
                 </select>
-                <span className="pointer-events-none absolute right-[10px] top-1/2 -translate-y-1/2 text-[12px] text-[#6b7280]">
-                  ▾
-                </span>
+                <svg
+                  className="pointer-events-none absolute right-[10px] top-1/2 -translate-y-1/2"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#6b7280"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
               </div>
             </div>
 
